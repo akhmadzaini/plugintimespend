@@ -46,11 +46,15 @@ function local_timespend3v_before_footer()
         'nama_course_singkat' => $COURSE->shortname,
         'nama_modul' => $nama_modul,
         'jenis_modul' => $jenis_modul,
+        'url' => $PAGE->url->__toString(),
+        'title' => $PAGE->title,
+        'token' => md5($PAGE->title . time()),
     ];
 
-    $url_reload = $CFG->wwwroot . '/local/timespend3v/reload.php';
+    $url_reload = $CFG->wwwroot . '/local/timespend3v/reload.php?token=' .
+        $SESSION->timespend3v['token'];
     $PAGE->requires->js('/local/timespend3v/js/reload.js');
     $PAGE->requires->js_init_code("
-            setInterval(function() {reload('". $url_reload ."', 'data');}, 15000);
+            setInterval(function() {reload('" . $url_reload . "');}, 5000);
         ");
 }

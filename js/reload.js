@@ -1,6 +1,5 @@
-var reload = function (url, data) {
-    $.post(url, data)
-        .done(function (data) {
-            // console.log(data);
-        });
+var reload = function (url) {
+    $.get(url, function(hasil){
+        console.log(hasil);
+    });
 }
